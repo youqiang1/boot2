@@ -1,0 +1,6 @@
+server:
+  port: 17103
+
+spring:
+  application:
+    name: boot2-ehcache
