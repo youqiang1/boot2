@@ -1,0 +1,29 @@
+server:
+  port: 17104
+
+spring:
+  application:
+    name: boot2-jasypt
+  datasource:
+    url: jdbc:mysql://localhost:3306/simple_dev?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: ENC(DiZd/oDVSLG/2t27mRZQzw==)
+    driverClassName: com.mysql.jdbc.Driver
+    tomcat:
+      validation-query: SELECT 1
+      test-while-idle: true
+  jpa:
+    hibernate.ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    password: suibiantianle
+    #jasypt默认前后缀，可修改
+    property:
+      prefix: ENC(
+      suffix: )
