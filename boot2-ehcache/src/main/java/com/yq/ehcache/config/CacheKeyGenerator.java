@@ -34,11 +34,9 @@ public class CacheKeyGenerator implements KeyGenerator {
                 }
                 key.append(sp);
             }
-        } else {
-            key.append("0:");
         }
         String returns = key.substring(0, key.length() - 1);
-        log.debug("generate key: {}", returns);
+        log.info("generate key: {}", returns);
         return returns;
     }
 
