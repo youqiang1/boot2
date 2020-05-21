@@ -27,4 +27,9 @@ spring boot 2.x
             export JASYPT_PASSWORD = xxx
             java -jar xxx.jar --jasypt.encryptor.password=${JASYPT_PASSWORD}
     http端口：17104
-       
+                   
+####boot2-quartz
+    名称：boot2-quartz
+    描述：simple spring boot 2 + quartz
+    http端口：17105
+          

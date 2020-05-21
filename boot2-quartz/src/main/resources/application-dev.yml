@@ -1,0 +1,6 @@
+server:
+  port: 17105
+
+spring:
+  application:
+    name: boot2-quartz
