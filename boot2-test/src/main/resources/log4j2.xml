@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="off" monitorInterval="1800">
+    <properties>
+        <property name="LOG_HOME">${sys:catalina.home}/logs</property>
+        <property name="ERROR_LOG_FILE_NAME">test.error</property>
+        <property name="INFO_LOG_FILE_NAME">test.info</property>
+        <property name="PATTERN">%d %-5p [%t] %C{1} (%F:%L) - %m%n</property>
+    </properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${PATTERN}"/>
+        </Console>
+
+        <RollingRandomAccessFile name="ErrorLog"
+                                 fileName="${LOG_HOME}/${ERROR_LOG_FILE_NAME}.log"
+                                 filePattern="${LOG_HOME}/${ERROR_LOG_FILE_NAME}.log_%d{yyyy-MM-dd}.log">
+            <ThresholdFilter level="ERROR"/>
+            <PatternLayout pattern="${PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="InfoLog"
+                                 fileName="${LOG_HOME}/${INFO_LOG_FILE_NAME}.log"
+                                 filePattern="${LOG_HOME}/${INFO_LOG_FILE_NAME}.log_%d{yyyy-MM-dd}.log">
+            <Filters>
+                <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+                <ThresholdFilter level="WARN" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+            <PatternLayout pattern="${PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+
+    </Appenders>
+
+    <Loggers>
+        <root level="info" includeLocation="true">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="ErrorLog"/>
+            <appender-ref ref="InfoLog"/>
+        </root>
+    </Loggers>
+
+</configuration>
